@@ -10,7 +10,7 @@ export default function Admin() {
   const [subjectForm, setSubjectForm] = useState({
     name: '',
     code: '',
-    branch_code: '',
+    branch_id: '',
     semester: '',
   });
 
@@ -39,7 +39,7 @@ export default function Admin() {
     const { error } = await supabase.from('subjects').insert([{
       name: subjectForm.name,
       code: subjectForm.code,
-      branch_code: subjectForm.branch_code,
+      branch_code: subjectForm.branch_id,
       semester: parseInt(subjectForm.semester)
     }]);
 
@@ -47,7 +47,7 @@ export default function Admin() {
       setMessage({ type: 'error', text: error.message });
     } else {
       setMessage({ type: 'success', text: 'Subject added successfully!' });
-      setSubjectForm({ name: '', code: '', branch_code: '', semester: '' });
+      setSubjectForm({ name: '', code: '', branch_id: '', semester: '' });
       setShowSubjectForm(false);
       fetchData();
     }
@@ -155,8 +155,8 @@ export default function Admin() {
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">Branch</label>
                   <select
-                    value={subjectForm.branch_code}
-                    onChange={(e) => setSubjectForm({ ...subjectForm, branch_code: e.target.value })}
+                    value={subjectForm.branch_id}
+                    onChange={(e) => setSubjectForm({ ...subjectForm, branch_id: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   >
@@ -224,7 +224,7 @@ export default function Admin() {
                   <option value="">Select Subject</option>
                   {subjects.map((subject) => (
                     <option key={subject.id} value={subject.id}>
-                      {subject.name} - Sem {subject.semester} ({subject.branch_code})
+                      {subject.name} - Sem {subject.semester_id} ({subject.branch_id})
                     </option>
                   ))}
                 </select>

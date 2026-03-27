@@ -7,7 +7,7 @@ export default function Home() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [branches, setBranches] = useState<Branch[]>([]);
-  const [semesters, setSemesters] = useState<Semester[]>([]);
+  const [, setSemesters] = useState<Semester[]>([]);
 
   useEffect(() => {
     fetchData();
@@ -26,7 +26,7 @@ export default function Home() {
       .limit(8);
 
     if (branchData) setBranches(branchData);
-    if (semesterData) setSemesters(semesterData);
+    if (semesterData) setSemesters(semesterData as any);
   };
 
   const handleSearch = (e: React.FormEvent) => {

@@ -46,7 +46,7 @@ export default function SubjectDetail() {
     setLoading(false);
   };
 
-  const isUnitWise = notes.some(n => n.unit !== null);
+   const isUnitWise = notes.length > 0;
 
   const cardColors = [
     { border: 'border-blue-400', bg: 'bg-blue-50', btn: 'bg-blue-600 hover:bg-blue-700', text: 'text-blue-700' },
@@ -99,7 +99,7 @@ export default function SubjectDetail() {
             <span className="bg-blue-700 px-3 py-1 rounded-full text-sm">{subject.code}</span>
             {branch && <span>{branch.name}</span>}
             <span>•</span>
-            <span>Semester {subject.semester}</span>
+            <span>Semester {subject.semester_id}</span>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@ export default function SubjectDetail() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Units</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-12">
               {notes
-                .sort((a, b) => (a.unit || 0) - (b.unit || 0))
+               .sort((a, b) => a.title.localeCompare(b.title)) 
                 .map((note, index) => {
                   const color = cardColors[index % cardColors.length];
                   return (

@@ -41,13 +41,13 @@ export default function SemesterDetail() {
     setLoading(false);
   };
 
-  const filteredSubjects = selectedBranch === 'all'
-    ? subjects
-    : subjects.filter(s => s.branch_code === selectedBranch);
+   const filteredSubjects = selectedBranch === 'all'
+  ? subjects
+  : subjects.filter(s => s.branch_id === selectedBranch);
 
-  const getSubjectsByBranch = (branchCode: string) => {
-    return subjects.filter(s => s.branch_code === branchCode);
-  };
+const getSubjectsByBranch = (branchCode: string) => {
+  return subjects.filter(s => s.branch_id === branchCode);
+};
 
   const SubjectCard = ({ subject, index }: { subject: Subject; index: number }) => (
     <div
