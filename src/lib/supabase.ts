@@ -15,7 +15,7 @@ export interface Branch {
 export interface Semester {
   id: string;
   number: number;
-  name: string;
+  branch_id: string;
   created_at: string;
 }
 
@@ -23,20 +23,20 @@ export interface Subject {
   id: string;
   name: string;
   code: string;
-  branch_id: string;
-  semester_id: string;
-  description: string;
+  branch_code: string;
+  semester: number;
+  description?: string;
   created_at: string;
 }
 
 export interface Note {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   subject_id: string;
   pdf_url: string;
+  unit?: number;
   views: number;
   downloads: number;
   created_at: string;
-  updated_at: string;
 }
